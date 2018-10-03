@@ -24,18 +24,21 @@ Give a brief introduction
 
 ---
 
-```js
-import { pipe, split, map, match, head, applySpec, join } from 'ramda';
+## What is functional programming?
+<Appear>
+  Programming with functions!
+</Appear>
 
-const parseShorthand = pipe(
-  split('.'),
-  map(
-    applySpec({
-      name: pipe(match(/[A-G](b|#)?/), head),
-      octave: pipe(match(/[0-9]/), join(''), parseInt),
-    })
-  )
-);
+```notes
+- What is functional programming?
+
+- (short pause -- click through)
+
+- It's programming with functions!
+
+- Object oriented based around objects
+
+- 'Functions' are the building block
 ```
 
 ---
