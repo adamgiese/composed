@@ -1,8 +1,10 @@
 export { default as theme } from './theme.js';
 import { Head, Appear } from 'mdx-deck';
+import Drake from './components/drake.js';
 
 <Head>
   <title>Composing music with composed functions</title>
+  <style>@import url('https://fonts.googleapis.com/css?family=Anton')</style>
 </Head>
 
 # Composing music with <br />composed functions
@@ -43,4 +45,10 @@ Give a brief introduction
 
 ---
 
-## Questions?
+## What is a function?
+<Drake
+  top1={'A sequence of commands'}
+  top2={'abstracted into a reusable unit.'}
+  bottom1={'A relationship between a'}
+  bottom2={'set of inputs and outputs.'}
+/>
