@@ -2,6 +2,7 @@ export { default as theme } from './theme.js';
 import { Head, Appear } from 'mdx-deck';
 import Drake from './components/drake.js';
 import Dawg from './components/yoDawg.js';
+import Small from './components/Small.js';
 
 <Head>
   <title>Composing music with composed functions</title>
@@ -76,9 +77,22 @@ Give a brief introduction
 
 ## Higher order functions
 
+<Small>definition: a function that either accepts a function <br />as an argument or returns a new function</Small>
+
 ---
 <Dawg
   line1='Yo dawg I heard you like functions so I made a function'
   line2='that takes a function and returns a function'
 >
 </Dawg>
+
+---
+## You may have used a <br />higher order function
+<small>(whether you know it or not)</small>
+---
+```js
+button.addEventListener('click', function() {
+  playMyMusic();
+});
+```
+<Small><code>addEventListener</code> accepts a function as its second argument</Small>
