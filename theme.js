@@ -6,6 +6,9 @@ export default {
   heading: {
     textTransform: 'none',
   },
+  blockquote: {
+    fontSize: '1em',
+  },
   prism: {
     style: okaidia
   }

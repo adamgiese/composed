@@ -65,13 +65,39 @@ Give a brief introduction
   <div><hr />This makes a function "referentially transparent."</div>
 </Appear>
 
-```notes
-- It should be noted that side effects are _not_ bad.
-```
+---
+
+TODO: Add 'Gru' meme here
+- Learn functional programming
+- Remove all side effects
+- Program is completely useless
+- Program is completely useless?!
+
+<Small>Side effects are not bad, but should be used carefully.</Small>
 
 ---
 
-# Our Toolbox
+## TODO: Add music examples of "pure" functions
+
+---
+
+# Immutability
+
+<Small>definition: a variable whose state cannot be modified after creation</Small>
+
+---
+
+> "If you have a dollar, and I give you another dollar, it does not change the fact that a moment ago you only had one dollar, and now you have two."
+_-Eric Elliott_
+
+---
+
+TODO: advantages of immutability
+- "Math" definition (`x = x * 2` is nonsense in math)
+- Prevents data loss
+- Easier to reason about
+- Is "declarative"
+- Structural sharing (tries)
 
 ---
 
@@ -96,3 +122,78 @@ button.addEventListener('click', function() {
 });
 ```
 <Small><code>addEventListener</code> accepts a function as its second argument</Small>
+---
+
+```js
+/* function that returns music function */
+```
+---
+
+## Closure
+<Small>definition: a function and its access to its enclosed state</Small>
+
+---
+
+```js
+/* example of closure */
+```
+
+---
+
+### Partial Application
+<Small>definition: a technique to "pre-set" some arguments of a function</Small>
+
+```notes
+- a type of closure
+- incredibly useful for writing reusable, generic functions
+
+```
+---
+TODO: add example of partial application
+---
+
+### Currying
+<Small>definition: a technique to take a function with multiple arguments <br /> and return a function that accepts them one at a time</Small>
+
+
+```notes
+- is related to partial application
+```
+---
+TODO: add example of currying
+
+---
+
+## Composition
+<Small>TODO: add definition</Small>
+
+```notes
+- I like the metaphor of "pipes"
+```
+---
+
+TODO: show 'mathematical' example
+
+---
+
+TODO: musical example
+
+---
+
+TODO: show "adaptor" functions
+- arity functions
+- order functions
+- using with partial application and currying
+- lenses
+
+---
+
+TODO: composition with functional libraries (ramda)
+
+---
+
+TODO: show example of music shorthand parsing
+
+---
+
+TODO: "wow" example
