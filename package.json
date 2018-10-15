@@ -11,6 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "file-loader": "^2.0.0",
-    "mdx-deck": "^1.7.7"
+    "mdx-deck": "^1.7.7",
+    "mdx-deck-code-surfer": "^0.5.3",
+    "ramda": "^0.25.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16.5.2",
+    "tone": "^0.12.80"
   }
 }

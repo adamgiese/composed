@@ -1,8 +1,20 @@
 export { default as theme } from './theme.js';
-import { Head, Appear } from 'mdx-deck';
+import { Head, Appear, Image } from 'mdx-deck';
 import Drake from './components/drake.js';
 import Dawg from './components/yoDawg.js';
 import Small from './components/Small.js';
+import Gru from './components/gru.js';
+import { FullScreenCode } from 'mdx-deck/layouts'
+import { CodeSurfer } from "mdx-deck-code-surfer"
+import butWhy from './images/but-why.gif'
+import composition1 from './images/composition1.png'
+import composition2 from './images/composition2.png'
+import Fugue from './components/music/examples/fugue.js'
+import MiddleC from './components/music/examples/middleC.js'
+import Filters from './components/music/examples/filterExample.js'
+import Map from './components/music/examples/mapExample.js'
+import Detuned from './components/music/examples/detune.js'
+import Wow from './components/music/examples/wowTest.js'
 
 <Head>
   <title>Composing music with composed functions</title>
@@ -29,6 +41,7 @@ Give a brief introduction
 ---
 
 ## What is functional programming?
+
 <Appear>
   Programming with functions!
 </Appear>
@@ -60,48 +73,79 @@ Give a brief introduction
 ### 'Pure' functions
 
 <Appear>
-  <div>1. Given the same arguments, it will return the same value.</div>
-  <div>2. No side effects.</div>
+[
+  <div>1. Given the same arguments, it will return the same value.</div>,
+  <div>2. No side effects.</div>,
   <div><hr />This makes a function "referentially transparent."</div>
+]
 </Appear>
 
+```notes
+- The ONLY thing you should care about is the return value
+```
 ---
 
-TODO: Add 'Gru' meme here
-- Learn functional programming
-- Remove all side effects
-- Program is completely useless
-- Program is completely useless?!
-
-<Small>Side effects are not bad, but should be used carefully.</Small>
+<Gru />
 
 ---
 
-## TODO: Add music examples of "pure" functions
-
+## Side effects are *NOT* bad. They include:
+- Making an HTTP request
+- DOM manipulation
+- Printing to the console
+- Playing music
 ---
 
+<CodeSurfer
+  code={require("!raw-loader!./snippets/pure-vs-impure.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      { range: [1,4], notes: "Define a musical note with name and octave" },
+      { lines: [6,7], notes: "`incrementOctave` is a pure function" },
+      { range: [9,11], notes: "`play` is an impure function, because it has a side effect" },
+      { range: [10,11], notes: "You can pass in either `highC` or `incrementOctave(middleC)` and have the same effect" },
+      { range: [10,11], notes: "This is due to 'referential transparency'" },
+  ]}
+/>
+
+---
 # Immutability
-
 <Small>definition: a variable whose state cannot be modified after creation</Small>
-
 ---
+<Image src={butWhy} size='60vw' />
+---
+
+## Immutability preserves state
 
 > "If you have a dollar, and I give you another dollar, it does not change the fact that a moment ago you only had one dollar, and now you have two."
 _-Eric Elliott_
 
+```notes
+- Data is preserved.
+- Think about a bank account?
+- Redux architecture
+- Musical score
+- Philisophically, think about TIME itself
+```
+---
+## Easier to reason about
+- Prevents unintentional side effects
+- No need to keep track of changes
+- Declarative
 ---
 
-TODO: advantages of immutability
-- "Math" definition (`x = x * 2` is nonsense in math)
-- Prevents data loss
-- Easier to reason about
-- Is "declarative"
-- Structural sharing (tries)
+## Math is immutable
+```js
+let x = 10;
+x = x + 1;       // nonsense
+const y = x + 1; // much better
+```
 
 ---
 
-## Higher order functions
+# Higher order functions
 
 <Small>definition: a function that either accepts a function <br />as an argument or returns a new function</Small>
 
@@ -111,89 +155,194 @@ TODO: advantages of immutability
   line2='that takes a function and returns a function'
 >
 </Dawg>
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/returnFunction.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      {},
+      { range: [1,2], notes: "Tone.js is a framework on top of the Web Audio API" },
+      { range: [4,4], notes: "`playNote` is a higher order function because it returns another function." },
+      { range: [5,5], notes: "`playMiddleC` is the return value of `playNote('C4')`" },
+      { range: [5,5], notes: "No note has been played yet!" },
+      { range: [7,8], notes: "`playMiddleC` is called when the button is clicked" },
+      { range: [8,8], notes: "`addEventListener` is a higher order function because it accepts a function." },
+  ]}
+/>
 
 ---
-## You may have used a <br />higher order function
-<small>(whether you know it or not)</small>
+
+<MiddleC />
+
 ---
-```js
-button.addEventListener('click', function() {
-  playMyMusic();
-});
+# Dealing with arrays
+
+```notes
+- Manipulating arrays is an important part of all paradigms
+
+- Two concepts that we already covered that are important:
+  -- Higher order functions
+  -- Immutability
 ```
-<Small><code>addEventListener</code> accepts a function as its second argument</Small>
+---
+## `[].filter`
+- Accepts a function run again every element
+- <code>predicate(element, index, array)</code>
+- Returns a subset of the original array
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/filter.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      {},
+      { range: [4,4], notes: "`isInCPentatonic` is a 'predicate' (a function that returns a boolean)" },
+      { range: [5,5], notes: "The `.filter` method accepts `isInCPentatonic` as an argument"},
+      { range: [6,6], notes: "Any value that returns a truthy value remains"},
+  ]}
+/>
 ---
 
-```js
-/* function that returns music function */
+<Filters />
+
+---
+## `[].map`
+- Accepts a function run again every element
+- <code>fn(element, index, array)</code>
+- Returns new array with manipulated values
+
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/map.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      {},
+      { range: [9,9], notes: "This function takes a 'note' object and returns one with an incremented octave" },
+      { range: [11,11], notes: "The `.map` method accepts a function that is applied to each array element" },
+      { range: [13,18], notes: "In the new array, each note's octave has been incremented" },
+  ]}
+/>
+---
+
+<Map />
+
+---
+## `[].reduce`
+- Accepts a function run again every element
+- <code>fn(accumulator, element, index, array)</code>
+- Returns an 'accumulated' value
+- Also known as 'fold' and 'accumulate'
+- More generic than 'filter' and 'map'
+---
+<CodeSurfer
+  code={require("!raw-loader!./snippets/reduce.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      {},
+      { range: [6,10], notes: "This function takes an array of notes and returns a new array of only unique notes" },
+      { range: [7,8], notes: "Parses a note down to just the name (regardless of octave)" },
+      { range: [9,9], notes: "Append note if it isn't already in the unique array" },
+      { range: [12,15], notes: "The .reduce method accepts two parameters" },
+      { range: [13,13], notes: "An accumulator function..." },
+      { range: [14,14], notes: "...and an initial value of the accumulation." },
+      { range: [16,16], notes: "The return value is the end 'accumulation'" },
+  ]}
+/>
+
+```notes
+- I often here that `.reduce` takes an array and returns a single value
+- While this is true, it isn't super useful (since ALL functions return a single value)
+- It is a very generic utility function that can return any type
 ```
 ---
 
 ## Closure
 <Small>definition: a function and its access to its enclosed state</Small>
-
 ---
-
-```js
-/* example of closure */
-```
-
----
-
 ### Partial Application
 <Small>definition: a technique to "pre-set" some arguments of a function</Small>
 
 ```notes
-- a type of closure
+- an application of closure
 - incredibly useful for writing reusable, generic functions
-
 ```
 ---
-TODO: add example of partial application
----
-
-### Currying
-<Small>definition: a technique to take a function with multiple arguments <br /> and return a function that accepts them one at a time</Small>
-
-
-```notes
-- is related to partial application
-```
----
-TODO: add example of currying
-
+<CodeSurfer
+  code={require("!raw-loader!./snippets/closure.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      {},
+      { range: [1,5], notes: "Closure allows an inner function to 'remember' its enclosing scope." },
+      { range: [7,8], notes: "With ES6 arrow functions, you can write very concise examples of closure" },
+      { range: [10,13], notes: "With partial application, you can set the array before the value" },
+      { range: [15,18], notes: "" },
+  ]}
+/>
 ---
 
 ## Composition
-<Small>TODO: add definition</Small>
+<Small>definition: a technique to combine multiple functions into a new function</Small>
 
 ```notes
 - I like the metaphor of "pipes"
 ```
 ---
 
-TODO: show 'mathematical' example
+<img src={composition1} />
 
 ---
 
-TODO: musical example
+<img src={composition2} />
 
 ---
 
-TODO: show "adaptor" functions
-- arity functions
-- order functions
-- using with partial application and currying
-- lenses
+<CodeSurfer
+  code={require("!raw-loader!./snippets/simpleComposition.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      { range: [1,16], notes: "Here, we will take a note name and return a slightly detuned frequency."},
+      { range: [3,4], notes: "First, define a function converting note name to frequency" },
+      { range: [3,4], notes: "For example: an input of 'A4' would return 440" },
+      { range: [6,7], notes: "Define a function to multiply by a small percentage" },
+      { range: [6,7], notes: "For example: an input of 440 would return 444.4" },
+      { range: [9,10], notes: "These are two similar functions" },
+      { range: [9,9], notes: "`compose` takes two functions and calls from right to left" },
+      { range: [9,9], notes: "This is the more 'mathematical' approach" },
+      { range: [10,10], notes: "`pipe` takes two functions and calls from left to right" },
+      { range: [12,13], notes: "`getDetunedFrequency` is the composition of these functions" },
+      { range: [12,13], notes: "An input of 'A4' would return 444.4" },
+      { range: [15,16], notes: "The same result can be achieved with a `pipe`" },
+  ]}
+/>
 
 ---
 
-TODO: composition with functional libraries (ramda)
+<Detuned />
 
 ---
 
-TODO: show example of music shorthand parsing
+TODO: wow
 
 ---
 
-TODO: "wow" example
+# Why?
+
+- Forces you to bring down problems into their smallest parts
+ - Helps with reasonability
+ - Helps with testing
+ - If necessary, helps with parallelization
+
+---
+
+<Wow />
