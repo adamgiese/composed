@@ -246,13 +246,12 @@ const y = x + 1; // much better
   dark={true}
   steps={[
       {},
-      { range: [6,10], notes: "This function takes an array of notes and returns a new array of only unique notes" },
-      { range: [7,8], notes: "Parses a note down to just the name (regardless of octave)" },
-      { range: [9,9], notes: "Append note if it isn't already in the unique array" },
-      { range: [12,15], notes: "The .reduce method accepts two parameters" },
-      { range: [13,13], notes: "An accumulator function..." },
-      { range: [14,14], notes: "...and an initial value of the accumulation." },
-      { range: [16,16], notes: "The return value is the end 'accumulation'" },
+      { range: [1,1], notes: "First, import Tone.js" },
+      { range: [3,17], notes: "Define a melody with note names and length" },
+      { range: [19,20], notes: "`toLength` is the function being passed to reduce" },
+      { range: [19,20], notes: "It adds a notes length to a running total" },
+      { range: [22,22], notes: "The method accepts a function and an initial value" },
+      { range: [22,22], notes: "The return value is the end 'accumulation'" },
   ]}
 />
 

@@ -1,16 +1,22 @@
+import Tone from 'tone';
+
 const melody = [
-  'D4', 'E4', 'F4', 'G4', 'A4', 'Bb4',
-  'C#4', 'Bb4', 'A4', 'G4', 'F4', 'E4', 'F4'
+  { name: 'D4', length: '16n' },
+  { name: 'E4', length: '16n' },
+  { name: 'F4', length: '16n' },
+  { name: 'G4', length: '16n' },
+  { name: 'A4', length: '16n' },
+  { name: 'Bb4', length: '16n' },
+  { name: 'C#4', length: '16n' },
+  { name: 'Bb4', length: '16n' },
+  { name: 'A4', length: '16n' },
+  { name: 'G4', length: '16n' },
+  { name: 'F4', length: '16n' },
+  { name: 'E4', length: '16n' },
+  { name: 'F4', length: '16n' },
 ];
 
-const toUniqueNotes = (unique, note, index, melody) => {
-  const validName = RegExp(/[A-G](#|b)?/);
-  const name = validName.exec(note)[0];
-  return unique.includes(name) ? unique : [...unique, name];
-};
+const toLength = (total, note) =>
+  total + Tone.Time(note.length).toSeconds();
 
-const notes = melody.reduce(
-  toUniqueNotes,
-  []
-);
-//  ["D", "E", "F", "G", "A", "Bb", "C#"]
+const length = melody.reduce(toLength, 0);
