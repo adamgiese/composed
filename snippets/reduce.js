@@ -20,3 +20,4 @@ const toLength = (total, note) =>
   total + Tone.Time(note.length).toSeconds();
 
 const length = melody.reduce(toLength, 0);
+// 1.625

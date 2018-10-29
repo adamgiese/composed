@@ -1,4 +1,5 @@
 export { default as theme } from './theme.js';
+import dracula from "prism-react-renderer/themes/dracula"
 import { Head, Appear, Image } from 'mdx-deck';
 import Drake from './components/drake.js';
 import Dawg from './components/yoDawg.js';
@@ -197,9 +198,13 @@ const y = x + 1; // much better
   dark={true}
   steps={[
       {},
-      { range: [4,4], notes: "`isInCPentatonic` is a 'predicate' (a function that returns a boolean)" },
-      { range: [5,5], notes: "The `.filter` method accepts `isInCPentatonic` as an argument"},
-      { range: [6,6], notes: "Any value that returns a truthy value remains"},
+      { range: [1,1], notes: "Import Tone.js" },
+      { range: [2,4], notes: "Define the melody" },
+      { range: [6,6], notes: "`freq` converts from string ('A4') to number (440)" },
+      { range: [7,7], notes: "`isHigh` is a 'predicate' (a function that returns a boolean)" },
+      { range: [7,7], notes: "If the provided note is 'C4' or above it will return true" },
+      { range: [9,9], notes: "`.filter` accepts a predicate as its argument" },
+      { range: [10,10], notes: "Any values that pass the predicate remain" },
   ]}
 />
 ---
@@ -249,7 +254,7 @@ const y = x + 1; // much better
       { range: [19,20], notes: "`toLength` is the function being passed to reduce" },
       { range: [19,20], notes: "It adds a notes length to a running total" },
       { range: [22,22], notes: "The method accepts a function and an initial value" },
-      { range: [22,22], notes: "The return value is the end 'accumulation'" },
+      { range: [23,23], notes: "The return value is the end 'accumulation'" },
   ]}
 />
 
@@ -329,20 +334,111 @@ const y = x + 1; // much better
 
 ---
 
-# TODO: shorthand "goal" example (convert shorthand to json)
+# Putting it all together
 
 ---
 
 <CodeSurfer
-  code={require("!raw-loader!./components/music/wow/index.js")}
+  code={require("!raw-loader!./components/music/util/parseShorthand.js")}
   lang="javascript"
   showNumbers={false}
   dark={true}
   steps={[
-      { range: [1,16], notes: "First, import utility functions"},
-      { range: [1,16], notes: "First, import utility functions"},
+      {},
+      { range: [1,15], notes: "Importing some dependencies from Ramda and Tonejs."},
+      {},
+      { range: [17,20], notes: "`parseName` takes a shorthand note and returns a name"},
+      { range: [17,20], notes: "For example, 'C4@8n' would return 'C'"},
+      { range: [17,20], notes: "It pipes the input through two other functions:"},
+      { range: [18,18], notes: "First, use `match` to return an array of matching strings"},
+      { range: [19,19], notes: "Then, use `head` to return just the first string"},
+      { range: [17,20], notes: "So, when passing a 'C4@8n'..."},
+      { range: [18,18], notes: "The `match` function returns ['C']..."},
+      { range: [18,18], notes: "...then the `head` function takes that ['C'] and returns 'C'."},
+      { range: [17,20], notes: "'C4@8n' → ['C'] → 'C'"},
+      {},
+      { range: [22,25], notes: "`parseOctave` takes a shorthand note and returns an octave"},
+      { range: [22,25], notes: "For example, 'C4@8n' would return 4"},
+      { range: [23,23], notes: "`match` returns an array of strings of matching digits"},
+      { range: [24,24], notes: "Use `Number` to coerce this array to a Number."},
+      { range: [22,25], notes: "'C4@8n' → ['4'] → 4"},
+      {},
+      { range: [27,30], notes: "`parseDuration` takes a shorthand note and returns a duration"},
+      { range: [27,30], notes: "For example, 'C4@8n' would return '8n'"},
+      { range: [28,28], notes: "`split` returns an array of strings separated at '@'"},
+      { range: [29,29], notes: "`last` returns the last element of this array"},
+      { range: [27,30], notes: "'C4@8n' → ['C4', '8n'] → '8n'"},
+      {},
+      { range: [32,35], notes: "`parseTime` takes a note and its context..."},
+      { range: [32,35], notes: "...and returns a scheduled time"},
+      { range: [33,33], notes: "The array is sliced to only include preceding notes."},
+      { range: [34,34], notes: "Each remaining element will be mapped to its length in seconds"},
+      { range: [35,35], notes: "This array of times are reduced to their total length"},
+      { range: [32,32], notes: "('E4@8n', 2, ['C4@8n.','D4@16n','E4@8n','F4@8n']) →"},
+      { range: [33,33], notes: "['C4@8n.','D4@16n'] →"},
+      { range: [34,34], notes: "[.375,.125] →"},
+      { range: [35,35], notes: ".5"},
+      {},
+      { range: [37,37], notes: "`addIndex(map)` makes Ramda map more like the array method."},
+      { range: [38,49], notes: "`parseShorthand` is a composition of compositions!"},
+      { range: [38,49], notes: "It accepts a string and returns an array of objects"},
+      { range: [39,39], notes: "First, it splits at all whitespace. String→Array"},
+      { range: [40,47], notes: "`arrayMap` works like [].map"},
+      { range: [41,41], notes: "`applySpec` takes an object shape with functions."},
+      { range: [41,46], notes: "The input value will be passed to each of these functions..."},
+      { range: [41,46], notes: "...and the output will be an object of the same shape!"},
   ]}
 />
+
+---
+
+```js
+`C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n`
+```
+This input string becomes...
+
+---
+
+```js
+[ 
+  "C4@16n", "E4@16n", "G4@16n", "C5@16n",
+  "E5@16n", "G4@16n", "C5@16n", "E5@16n", 
+]
+```
+...this array of strings, which becomes...
+
+---
+
+```js
+[
+  { "name": "C", "octave": 4, "length": "16n", "time": 0 },
+  { "name": "E", "octave": 4, "length": "16n", "time": 0.125 },
+  { "name": "G", "octave": 4, "length": "16n", "time": 0.25 },
+  { "name": "C", "octave": 5, "length": "16n", "time": 0.375 },
+  { "name": "E", "octave": 5, "length": "16n", "time": 0.5 },
+  { "name": "G", "octave": 4, "length": "16n", "time": 0.625 },
+  { "name": "C", "octave": 5, "length": "16n", "time": 0.75 },
+  { "name": "E", "octave": 5, "length": "16n", "time": 0.875 }
+]
+```
+...this array of note objects!
+
+---
+
+# TODO: show prelude "score"
+
+---
+
+# TODO: prelude example
+<Wow />
+---
+
+# TODO: show mario "score"
+
+---
+
+# TODO: mario example
+<Wow />
 
 ---
 
@@ -355,4 +451,3 @@ const y = x + 1; // much better
 
 ---
 
-<Wow />

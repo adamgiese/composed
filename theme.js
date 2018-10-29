@@ -1,5 +1,5 @@
 import { future as theme } from 'mdx-deck/themes'
-import okaidia from 'react-syntax-highlighter/styles/prism/okaidia'
+import darcula from 'react-syntax-highlighter/styles/prism/duotone-dark'
 
 export default {
   ...theme,
@@ -24,6 +24,6 @@ export default {
     },
   },
   prism: {
-    style: okaidia
+    style: darcula
   }
 }
