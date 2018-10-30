@@ -1,7 +1,10 @@
 import parseShorthand from '../util/parseShorthand';
 
 const preludeInC =
- `C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n
+ `C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n
+  C4@16n D4@16n A4@16n D5@16n F5@16n A4@16n D5@16n F5@16n C4@16n D4@16n A4@16n D5@16n F5@16n A4@16n D5@16n F5@16n
+  B3@16n D4@16n G4@16n D5@16n F5@16n G4@16n D5@16n F5@16n B3@16n D4@16n G4@16n D5@16n F5@16n G4@16n D5@16n F5@16n
+  C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n
 `;
 
 console.log(parseShorthand(preludeInC))

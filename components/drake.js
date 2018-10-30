@@ -4,7 +4,7 @@ import { Appear } from 'mdx-deck';
 
 const svgStyles = {
   width: '80vw',
-  maxWidth: '600px',
+  maxWidth: '900px',
 };
 
 const Text = ({children}) => (

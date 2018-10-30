@@ -53,10 +53,10 @@ Give a brief introduction
 - (short pause -- click through)
 
 - It's programming with functions!
-
 - Object oriented based around objects
-
 - 'Functions' are the building block
+- It is a 'declarative' approach
+
 ```
 
 ---
@@ -102,7 +102,8 @@ Give a brief introduction
   dark={true}
   steps={[
       { range: [1,4], notes: "Define a musical note with name and octave" },
-      { lines: [6,7], notes: "`incrementOctave` is a pure function" },
+      { lines: [6,6], notes: "`incrementOctave` is a pure function" },
+      { lines: [7,7], notes: "`highC` is the result of that pure function" },
       { range: [9,11], notes: "`play` is an impure function, because it has a side effect" },
       { range: [10,11], notes: "You can pass in either `highC` or `incrementOctave(middleC)` and have the same effect" },
       { range: [10,11], notes: "This is due to 'referential transparency'" },
@@ -168,6 +169,7 @@ const y = x + 1; // much better
       { range: [5,5], notes: "No note has been played yet!" },
       { range: [7,8], notes: "`playMiddleC` is called when the button is clicked" },
       { range: [8,8], notes: "`addEventListener` is a higher order function because it accepts a function." },
+      { lines: [4,8], notes: "`addEventListener` and `playNote` are both higher order" },
   ]}
 />
 
@@ -199,7 +201,7 @@ const y = x + 1; // much better
   steps={[
       {},
       { range: [1,1], notes: "Import Tone.js" },
-      { range: [2,4], notes: "Define the melody" },
+      { range: [2,5], notes: "Define the melody" },
       { range: [6,6], notes: "`freq` converts from string ('A4') to number (440)" },
       { range: [7,7], notes: "`isHigh` is a 'predicate' (a function that returns a boolean)" },
       { range: [7,7], notes: "If the provided note is 'C4' or above it will return true" },
@@ -255,6 +257,12 @@ const y = x + 1; // much better
       { range: [19,20], notes: "It adds a notes length to a running total" },
       { range: [22,22], notes: "The method accepts a function and an initial value" },
       { range: [23,23], notes: "The return value is the end 'accumulation'" },
+      { range: [4,4], notes: "Starting with the initial value of 0..." },
+      { range: [4,4], notes: "...each notes length is added to the total." },
+      { range: [4,4], notes: "0 + 0.125" },
+      { range: [5,5], notes: "0.125 + 0.125 = 0.25" },
+      { range: [6,6], notes: "0.25 + 0.125 = 0.375" },
+      { range: [7,16], notes: "And so on, until 1.625" },
   ]}
 />
 
@@ -269,11 +277,13 @@ const y = x + 1; // much better
 <Small>definition: a function and its access to its enclosed state</Small>
 ---
 ### Partial Application
-<Small>definition: a technique to "pre-set" some arguments of a function</Small>
+<Small>definition: a technique to "pre-set" or "fix"<br /> some arguments of a function</Small>
 
 ```notes
 - an application of closure
 - incredibly useful for writing reusable, generic functions
+
+- the term comes from "partially applying" the arguments to the function
 ```
 ---
 <CodeSurfer
@@ -284,9 +294,9 @@ const y = x + 1; // much better
   steps={[
       {},
       { range: [1,5], notes: "Closure allows an inner function to 'remember' its enclosing scope." },
-      { range: [7,8], notes: "With ES6 arrow functions, you can write very concise examples of closure" },
-      { range: [10,13], notes: "With partial application, you can set the array before the value" },
-      { range: [15,18], notes: "" },
+      { range: [7,10], notes: "With partial application, you can 'fix' the array before the value" },
+      { range: [9,10], notes: "These scales are 'fixed' to the predicate" },
+      { range: [12,15], notes: "Each resulting function 'remembers' the scale from the outer scope" },
   ]}
 />
 ---
@@ -318,13 +328,10 @@ const y = x + 1; // much better
       { range: [3,4], notes: "For example: an input of 'A4' would return 440" },
       { range: [6,7], notes: "Define a function to multiply by a small percentage" },
       { range: [6,7], notes: "For example: an input of 440 would return 444.4" },
-      { range: [9,10], notes: "These are two similar functions" },
       { range: [9,9], notes: "`compose` takes two functions and calls from right to left" },
-      { range: [9,9], notes: "This is the more 'mathematical' approach" },
-      { range: [10,10], notes: "`pipe` takes two functions and calls from left to right" },
-      { range: [12,13], notes: "`getDetunedFrequency` is the composition of these functions" },
-      { range: [12,13], notes: "An input of 'A4' would return 444.4" },
-      { range: [15,16], notes: "The same result can be achieved with a `pipe`" },
+      { range: [9,9], notes: "This is the more 'mathematical' approach to composition" },
+      { range: [11,12], notes: "`getDetunedFrequency` is the composition of these functions" },
+      { range: [11,12], notes: "An input of 'A4' would return 444.4" },
   ]}
 />
 
@@ -346,7 +353,6 @@ const y = x + 1; // much better
   steps={[
       {},
       { range: [1,15], notes: "Importing some dependencies from Ramda and Tonejs."},
-      {},
       { range: [17,20], notes: "`parseName` takes a shorthand note and returns a name"},
       { range: [17,20], notes: "For example, 'C4@8n' would return 'C'"},
       { range: [17,20], notes: "It pipes the input through two other functions:"},
@@ -356,19 +362,16 @@ const y = x + 1; // much better
       { range: [18,18], notes: "The `match` function returns ['C']..."},
       { range: [18,18], notes: "...then the `head` function takes that ['C'] and returns 'C'."},
       { range: [17,20], notes: "'C4@8n' → ['C'] → 'C'"},
-      {},
       { range: [22,25], notes: "`parseOctave` takes a shorthand note and returns an octave"},
       { range: [22,25], notes: "For example, 'C4@8n' would return 4"},
       { range: [23,23], notes: "`match` returns an array of strings of matching digits"},
       { range: [24,24], notes: "Use `Number` to coerce this array to a Number."},
       { range: [22,25], notes: "'C4@8n' → ['4'] → 4"},
-      {},
       { range: [27,30], notes: "`parseDuration` takes a shorthand note and returns a duration"},
       { range: [27,30], notes: "For example, 'C4@8n' would return '8n'"},
       { range: [28,28], notes: "`split` returns an array of strings separated at '@'"},
       { range: [29,29], notes: "`last` returns the last element of this array"},
       { range: [27,30], notes: "'C4@8n' → ['C4', '8n'] → '8n'"},
-      {},
       { range: [32,35], notes: "`parseTime` takes a note and its context..."},
       { range: [32,35], notes: "...and returns a scheduled time"},
       { range: [33,33], notes: "The array is sliced to only include preceding notes."},
@@ -378,7 +381,6 @@ const y = x + 1; // much better
       { range: [33,33], notes: "['C4@8n.','D4@16n'] →"},
       { range: [34,34], notes: "[.375,.125] →"},
       { range: [35,35], notes: ".5"},
-      {},
       { range: [37,37], notes: "`addIndex(map)` makes Ramda map more like the array method."},
       { range: [38,49], notes: "`parseShorthand` is a composition of compositions!"},
       { range: [38,49], notes: "It accepts a string and returns an array of objects"},
@@ -411,43 +413,55 @@ This input string becomes...
 
 ```js
 [
-  { "name": "C", "octave": 4, "length": "16n", "time": 0 },
-  { "name": "E", "octave": 4, "length": "16n", "time": 0.125 },
-  { "name": "G", "octave": 4, "length": "16n", "time": 0.25 },
-  { "name": "C", "octave": 5, "length": "16n", "time": 0.375 },
-  { "name": "E", "octave": 5, "length": "16n", "time": 0.5 },
-  { "name": "G", "octave": 4, "length": "16n", "time": 0.625 },
-  { "name": "C", "octave": 5, "length": "16n", "time": 0.75 },
-  { "name": "E", "octave": 5, "length": "16n", "time": 0.875 }
+  { name: "C", octave: 4, length: "16n", time: 0 },
+  { name: "E", octave: 4, length: "16n", time: 0.125 },
+  { name: "G", octave: 4, length: "16n", time: 0.25 },
+  { name: "C", octave: 5, length: "16n", time: 0.375 },
+  { name: "E", octave: 5, length: "16n", time: 0.5 },
+  { name: "G", octave: 4, length: "16n", time: 0.625 },
+  { name: "C", octave: 5, length: "16n", time: 0.75 },
+  { name: "E", octave: 5, length: "16n", time: 0.875 }
 ]
 ```
 ...this array of note objects!
 
 ---
 
-# TODO: show prelude "score"
+```js
+ `C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n 
+  C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n
+  C4@16n D4@16n A4@16n D5@16n F5@16n A4@16n D5@16n F5@16n
+  C4@16n D4@16n A4@16n D5@16n F5@16n A4@16n D5@16n F5@16n
+  B3@16n D4@16n G4@16n D5@16n F5@16n G4@16n D5@16n F5@16n
+  B3@16n D4@16n G4@16n D5@16n F5@16n G4@16n D5@16n F5@16n
+  C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n
+  C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n`;
+```
 
 ---
 
-# TODO: prelude example
-<Wow />
+<Wow id='preludeInC' title='Prelude In C'/>
 ---
 
-# TODO: show mario "score"
+```js
+ `E5@16n E5@8n E5@8n C5@16n E5@8n G5@4n G4@4n
+  C5@8n. G4@8n. E4@8n. A4@8n B4@8n Bb4@16n A4@8n
+  G4@8t E5@8t G5@8t A5@8n F5@16n G5@8n
+  E5@8n C5@16n D5@16n B4@8n.
+  C5@8n. G4@8n. E4@8n. A4@8n B4@8n Bb4@16n A4@8n
+  G4@8t E5@8t G5@8t A5@8n F5@16n G5@8n
+  E5@8n C5@16n D5@16n B4@8n.`;
+```
 
 ---
 
 # TODO: mario example
-<Wow />
+<Wow id='mario' title='⭐️'/>
 
 ---
 
 # Why?
 
 - Forces you to bring down problems into their smallest parts
- - Helps with reasonability
- - Helps with testing
- - If necessary, helps with parallelization
-
----
-
+- Helps with reasonability
+- Helps with testing

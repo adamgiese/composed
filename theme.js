@@ -1,6 +1,16 @@
 import { future as theme } from 'mdx-deck/themes'
 import darcula from 'react-syntax-highlighter/styles/prism/duotone-dark'
 
+const codeStyles = {
+  ...darcula,
+  'code[class*="language-"]': {
+    ...darcula['code[class*="language-"]'],
+    fontSize: '32px',
+  },
+}
+
+console.log(codeStyles);
+
 export default {
   ...theme,
   heading: {
@@ -19,11 +29,20 @@ export default {
       fontSize: '28px'
     },
     button: {
-      padding: '2rem 4rem',
-      fontSize: '2em',
+      padding: '1rem 2rem',
+      fontSize: '1.4em',
+      background: 'transparent',
+      color: '#75d7be',
+      border: '4px solid currentColor',
+    },
+    'button:focus': {
+      backgroundColor: '#323232',
+    },
+    'button:not(:first-child)': {
+      marginLeft: '1rem',
     },
   },
   prism: {
-    style: darcula
+    style: codeStyles,
   }
 }

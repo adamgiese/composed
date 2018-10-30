@@ -3,11 +3,10 @@ import DisplayButton from '../../DisplayButton.js'
 import wow from '../wow/wowShort.js';
 import play from '../util/playWow.js';
 
-export default () => {
+export default ({id, title}) => {
   return (
     <div>
-      <DisplayButton id='preludeInC' fn={play(wow.preludeInC)}>Prelude in C</DisplayButton>
-      <DisplayButton id='mario' fn={play(wow.mario)}>Mario</DisplayButton>
+      <DisplayButton id={id} fn={play(wow[id])}>{title}</DisplayButton>
     </div>
   );
 }

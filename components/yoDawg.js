@@ -3,7 +3,7 @@ import dawg from '../images/yo-dawg.jpg';
 
 const svgStyles = {
   width: '80vw',
-  maxWidth: '600px',
+  maxWidth: '700px',
 };
 
 const Text = ({children, y}) => (
