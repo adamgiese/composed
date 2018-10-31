@@ -41,6 +41,12 @@ export default {
     'button:not(:first-child)': {
       marginLeft: '1rem',
     },
+    '.thanks': {
+      color: '#c47de8',
+      fontWeight: '400',
+      textTransform: 'uppercase',
+      letterSpacing: '4px',
+    },
   },
   prism: {
     style: codeStyles,

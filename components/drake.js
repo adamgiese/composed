@@ -24,7 +24,7 @@ const Span = ({y, children}) => (
 );
 
 const Meme = ({isTop, top1, top2, bottom1, bottom2}) => (
-  <svg viewBox={`0 ${isTop ? 0 : 200} 600 ${isTop ? 200 : 400}`} style={svgStyles}>
+  <svg viewBox={`0 ${isTop ? 0 : 200} 600 200`} style={svgStyles}>
     <image
       xlinkHref={drake}
       x={0}

@@ -5,12 +5,10 @@ import Drake from './components/drake.js';
 import Dawg from './components/yoDawg.js';
 import Small from './components/Small.js';
 import Gru from './components/gru.js';
-import { FullScreenCode } from 'mdx-deck/layouts'
 import { CodeSurfer } from "mdx-deck-code-surfer"
 import butWhy from './images/but-why.gif'
 import composition1 from './images/composition1.png'
 import composition2 from './images/composition2.png'
-import Fugue from './components/music/examples/fugue.js'
 import MiddleC from './components/music/examples/middleC.js'
 import Filters from './components/music/examples/filterExample.js'
 import Map from './components/music/examples/mapExample.js'
@@ -106,7 +104,6 @@ Give a brief introduction
       { lines: [7,7], notes: "`highC` is the result of that pure function" },
       { range: [9,11], notes: "`play` is an impure function, because it has a side effect" },
       { range: [10,11], notes: "You can pass in either `highC` or `incrementOctave(middleC)` and have the same effect" },
-      { range: [10,11], notes: "This is due to 'referential transparency'" },
   ]}
 />
 
@@ -124,24 +121,16 @@ _-Eric Elliott_
 
 ```notes
 - Data is preserved.
+
 - Think about a bank account?
+
 - Redux architecture
-- Musical score
-- Philisophically, think about TIME itself
 ```
 ---
 ## Easier to reason about
 - Prevents unintentional side effects
 - No need to keep track of changes
 - Declarative
----
-
-## Math is immutable
-```js
-let x = 10;
-x = x + 1;       // nonsense
-const y = x + 1; // much better
-```
 
 ---
 
@@ -190,7 +179,7 @@ const y = x + 1; // much better
 ---
 ## `[].filter`
 - Accepts a function run again every element
-- <code>predicate(element, index, array)</code>
+- <code>fn(element, index, array)</code>
 - Returns a subset of the original array
 ---
 <CodeSurfer
@@ -217,8 +206,7 @@ const y = x + 1; // much better
 ## `[].map`
 - Accepts a function run again every element
 - <code>fn(element, index, array)</code>
-- Returns new array with manipulated values
-
+- Returns new array of same length with manipulated values
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/map.js")}
@@ -275,12 +263,17 @@ const y = x + 1; // much better
 
 ## Closure
 <Small>definition: a function and its access to its enclosed state</Small>
+
+```notes
+- very common interview question!
+```
 ---
 ### Partial Application
 <Small>definition: a technique to "pre-set" or "fix"<br /> some arguments of a function</Small>
 
 ```notes
 - an application of closure
+
 - incredibly useful for writing reusable, generic functions
 
 - the term comes from "partially applying" the arguments to the function
@@ -343,6 +336,9 @@ const y = x + 1; // much better
 
 # Putting it all together
 
+```notes
+Writing a function to convert a shorthand string notation into an array of objects that can be turned into audio by the Web Audio API
+```
 ---
 
 <CodeSurfer
@@ -360,7 +356,7 @@ const y = x + 1; // much better
       { range: [19,19], notes: "Then, use `head` to return just the first string"},
       { range: [17,20], notes: "So, when passing a 'C4@8n'..."},
       { range: [18,18], notes: "The `match` function returns ['C']..."},
-      { range: [18,18], notes: "...then the `head` function takes that ['C'] and returns 'C'."},
+      { range: [19,19], notes: "...then the `head` function takes that ['C'] and returns 'C'."},
       { range: [17,20], notes: "'C4@8n' → ['C'] → 'C'"},
       { range: [22,25], notes: "`parseOctave` takes a shorthand note and returns an octave"},
       { range: [22,25], notes: "For example, 'C4@8n' would return 4"},
@@ -375,13 +371,12 @@ const y = x + 1; // much better
       { range: [32,35], notes: "`parseTime` takes a note and its context..."},
       { range: [32,35], notes: "...and returns a scheduled time"},
       { range: [33,33], notes: "The array is sliced to only include preceding notes."},
-      { range: [34,34], notes: "Each remaining element will be mapped to its length in seconds"},
+      { range: [34,34], notes: "Each remaining element will be mapped to its length"},
       { range: [35,35], notes: "This array of times are reduced to their total length"},
       { range: [32,32], notes: "('E4@8n', 2, ['C4@8n.','D4@16n','E4@8n','F4@8n']) →"},
       { range: [33,33], notes: "['C4@8n.','D4@16n'] →"},
       { range: [34,34], notes: "[.375,.125] →"},
       { range: [35,35], notes: ".5"},
-      { range: [37,37], notes: "`addIndex(map)` makes Ramda map more like the array method."},
       { range: [38,49], notes: "`parseShorthand` is a composition of compositions!"},
       { range: [38,49], notes: "It accepts a string and returns an array of objects"},
       { range: [39,39], notes: "First, it splits at all whitespace. String→Array"},
@@ -455,7 +450,6 @@ This input string becomes...
 
 ---
 
-# TODO: mario example
 <Wow id='mario' title='⭐️'/>
 
 ---
@@ -465,3 +459,7 @@ This input string becomes...
 - Forces you to bring down problems into their smallest parts
 - Helps with reasonability
 - Helps with testing
+
+---
+
+<h1 className='thanks'>Thank You!</h1>
