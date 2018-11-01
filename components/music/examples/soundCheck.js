@@ -4,12 +4,12 @@ import Tone from 'tone';
 import play from '../util/play.js';
 import withTime from '../util/withStraightQuarters';
 
-const C = [ 'C4' ];
+const note = [ 'C3', 'C4', 'C5' ];
 
 export default () => (
   <div>
-    <DisplayButton id='middleC' fn={play(C.map(withTime))}>
-      Middle C
+    <DisplayButton id='soundCheck' fn={play(note.map(withTime))}>
+      🔊
     </DisplayButton>
   </div>
 );
