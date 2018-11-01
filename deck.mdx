@@ -78,7 +78,15 @@ Give a brief introduction
 </Appear>
 
 ```notes
-- The ONLY thing you should care about is the return value
+1. This means it shouln't rely on something outside that could be different, such as
+  - Random number generators
+  - The current time
+  - Read from a database
+
+2. This means it shouldn't effect anything outside of its return value:
+  - Play music
+  - Manipulate the DOM
+  - Write to a database
 ```
 ---
 
