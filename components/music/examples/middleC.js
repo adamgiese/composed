@@ -6,10 +6,10 @@ import withTime from '../util/withStraightQuarters';
 
 const C = [ 'C4' ];
 
-export default () => (
+export default ({title}) => (
   <div>
     <DisplayButton id='middleC' fn={play(C.map(withTime))}>
-      Play C4
+      { title || 'Middle C' }
     </DisplayButton>
   </div>
 );
