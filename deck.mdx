@@ -148,7 +148,7 @@ _-Eric Elliott_
 
 # Higher order functions
 
-<Small>definition: a function that either accepts a function <br />as an argument or returns a new function</Small>
+<Small>definition: a function that either accepts a function <br />as an argument or returns a function</Small>
 
 ---
 <Dawg
@@ -165,11 +165,11 @@ _-Eric Elliott_
   steps={[
       {},
       { range: [1,2], notes: "Tone.js is a framework on top of the Web Audio API" },
-      { range: [4,4], notes: "`playNote` is a higher order function because it returns another function." },
+      { range: [4,4], notes: "`playNote` returns a function." },
       { range: [5,5], notes: "`playMiddleC` is the return value of `playNote('C4')`" },
       { range: [5,5], notes: "No note has been played yet!" },
       { range: [7,8], notes: "`playMiddleC` is called when the button is clicked" },
-      { range: [8,8], notes: "`addEventListener` is a higher order function because it accepts a function." },
+      { range: [8,8], notes: "`addEventListener` accepts a function as an argument" },
       { lines: [4,8], notes: "`addEventListener` and `playNote` are both higher order" },
   ]}
 />
@@ -189,7 +189,7 @@ _-Eric Elliott_
   -- Immutability
 ```
 ---
-## `[].filter`
+## `Array.filter`
 - Accepts a function run again every element
 - <code>fn(element, index, array)</code>
 - Returns a subset of the original array
@@ -215,10 +215,10 @@ _-Eric Elliott_
 <Filters />
 
 ---
-## `[].map`
+## `Array.map`
 - Accepts a function run again every element
 - <code>fn(element, index, array)</code>
-- Returns new array of same length with manipulated values
+- Returns array of same length with new values
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/map.js")}
@@ -237,8 +237,8 @@ _-Eric Elliott_
 <Map />
 
 ---
-## `[].reduce`
-- Accepts a function run again every element
+## `Array.reduce`
+- Accepts a function run against every element
 - <code>fn(accumulator, element, index, array)</code>
 - Returns an 'accumulated' value
 - Also known as 'fold' and 'accumulate'
@@ -392,7 +392,7 @@ Writing a function to convert a shorthand string notation into an array of objec
       { range: [38,49], notes: "`parseShorthand` is a composition of compositions!"},
       { range: [38,49], notes: "It accepts a string and returns an array of objects"},
       { range: [39,39], notes: "First, it splits at all whitespace. String→Array"},
-      { range: [40,47], notes: "`arrayMap` works like [].map"},
+      { range: [40,47], notes: "`arrayMap` works like Array.map"},
       { range: [41,41], notes: "`applySpec` takes an object shape with functions."},
       { range: [41,46], notes: "The input value will be passed to each of these functions..."},
       { range: [41,46], notes: "...and the output will be an object of the same shape!"},
