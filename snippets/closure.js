@@ -1,15 +1,10 @@
-function doesArrayInclude(array) {
-  return function(value) {
-    return array.includes(value);
-  }
-}
+import transpose from 'fictional-library';
 
-const cMajor = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
-const cMinor = ['C', 'D', 'Eb', 'F', 'G', 'Ab', 'Bb'];
-const isInC = doesArrayInclude(cMajor);
-const isInCminor = doesArrayInclude(cMinor);
+const up3M = note => transpose('up', '3M', note);
 
-isInC('E'); // true
-isInC('Eb'); // false
-isInCminor('E'); // false
-isInCminor('Eb'); // true
+up3M({note: 'C', octave: 4}); // {note: 'E', octave: 4}
+up3M({note: 'Bb', octave: 2}); // {note: 'D', octave: 3}
+
+/* Stage 1 TC39 Native Partial Application Syntax */
+
+const down7m = transpose('down', '7m', ?);
