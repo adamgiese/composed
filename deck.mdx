@@ -256,6 +256,12 @@ _-Eric Elliott_
 - Returns an 'accumulated' value
 - Also known as 'fold' and 'accumulate'
 - More generic than 'filter' and 'map'
+
+```notes
+- I often here that `.reduce` takes an array and returns a single value
+- While this is true, it isn't super useful (since ALL functions return a single value)
+- It is a very generic utility function that can return any type
+```
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/reduce.js")}
@@ -278,12 +284,6 @@ _-Eric Elliott_
       { range: [7,16], notes: "And so on, until 1.625" },
   ]}
 />
-
-```notes
-- I often here that `.reduce` takes an array and returns a single value
-- While this is true, it isn't super useful (since ALL functions return a single value)
-- It is a very generic utility function that can return any type
-```
 ---
 
 <Reduce />
