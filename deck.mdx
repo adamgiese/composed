@@ -147,30 +147,33 @@ These so-called "pure" functions are the building block.
 <Image src={butWhy} size='60vw' />
 
 ```notes
-- It might seem like immutability is tieing one arm behind your back
+It might seem like immutability is tieing one arm behind your back
 
 - There is a reason for this
+
 ```
 ---
 
-## Immutability preserves state
+## Advantages of Immutability
 
-> "If you have a dollar, and I give you another dollar, it does not change the fact that a moment ago you only had one dollar, and now you have two."
-_-Eric Elliott_
+<ul>
+  <Appear>
+    <li>Less for your brain to track</li>
+    <li>Prevents unintentional side effects</li>
+    <li>Preserves state</li>
+  </Appear>
+</ul>
 
 ```notes
-- Think about a bank account?
+- Humans have limited RAM called "working memory"
 
-- Not just a single balance:
+- Accidently changing a variable in a function can be a hard bug to track down
+
+- Bank account: Not just a single balance:
   - Starting balance
   - Withdrawals and deposits
-```
----
-## Easier to reason about
-- Prevents unintentional side effects
-- No need to keep track of changes
-- Declarative
 
+```
 ---
 
 # Higher order functions
