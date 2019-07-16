@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import gru from '../images/gru.jpg';
 
 const svgStyles = {
@@ -18,7 +18,7 @@ const Text = ({children, y, x}) => (
   >{children}</text>
 )
 
-export default ({box1, box2, box3, box4}) => (
+export default ({step}) => (
   <svg viewBox='0 0 600 400' style={svgStyles}>
     <image
       xlinkHref={gru}
@@ -27,20 +27,26 @@ export default ({box1, box2, box3, box4}) => (
       height="400"
       width="600"
     />
-    <Text x={230} y={100}>Learn</Text>
-    <Text x={230} y={130}>functional</Text>
-    <Text x={230} y={160}>programming</Text>
 
-    <Text x={545} y={100}>Remove</Text>
-    <Text x={545} y={130}>all</Text>
-    <Text x={545} y={160}>side effects</Text>
+    { step > 1 ? <Fragment>
+      <Text x={230} y={100}>Learn</Text>
+      <Text x={230} y={130}>functional</Text>
+      <Text x={230} y={160}>programming</Text>
+    </Fragment> : null }
 
-    <Text x={230} y={270}>Program</Text>
-    <Text x={230} y={300}>is</Text>
-    <Text x={230} y={330}>useless</Text>
+    { step > 2 ? <Fragment>
+      <Text x={545} y={100}>Remove</Text>
+      <Text x={545} y={130}>all</Text>
+      <Text x={545} y={160}>side effects</Text>
+    </Fragment> : null }
 
-    <Text x={545} y={270}>Program</Text>
-    <Text x={545} y={300}>is</Text>
-    <Text x={545} y={330}>useless</Text>
+    { step > 3 ? <Fragment>
+      <Text x={230} y={270}>Program</Text>
+      <Text x={230} y={300}>is</Text>
+      <Text x={230} y={330}>useless</Text>
+      <Text x={545} y={270}>Program</Text>
+      <Text x={545} y={300}>is</Text>
+      <Text x={545} y={330}>useless</Text>
+    </Fragment> : null }
   </svg>
 );
