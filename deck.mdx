@@ -231,12 +231,12 @@ It might seem like immutability is tieing one arm behind your back
   dark={true}
   steps={[
       {},
-      { range: [2,5], notes: "Define the melody" },
-      { range: [6,6], notes: "`freq` converts from string ('A4') to number (440)" },
-      { range: [7,7], notes: "`isHigh` is a 'predicate' (a function that returns a boolean)" },
+      { range: [2,5], notes: "First, define the melody" },
+      { range: [6,6], notes: "`freq` accepts a string ('A4') and returns a number (440)" },
+      { range: [7,7], notes: "`isHigh` accepts a number and returns a boolean" },
       { range: [7,7], notes: "If the provided note is 'C4' or above it will return true" },
-      { range: [9,9], notes: "`.filter` accepts a predicate as its argument" },
-      { range: [10,10], notes: "Any values that pass the predicate remain" },
+      { range: [9,9], notes: "`.filter` accepts a function as its argument" },
+      { range: [10,10], notes: "Any values that return a 'truthy' value will remain" },
   ]}
 />
 ---
