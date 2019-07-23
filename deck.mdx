@@ -180,12 +180,19 @@ It might seem like immutability is tieing one arm behind your back
 
 <Small>definition: a function that either accepts a function <br />as an argument or returns a function</Small>
 
+```notes
+"You might be thinking something along the lines of..."
+```
+
 ---
 <Dawg
   line1='Yo dawg I heard you like functions so I made a function'
   line2='that takes a function and returns a function'
->
-</Dawg>
+/>
+
+```notes
+Here is an example that might help
+```
 ---
 <CodeSurfer
   code={require("!raw-loader!./snippets/returnFunction.js")}
@@ -196,9 +203,7 @@ It might seem like immutability is tieing one arm behind your back
       {},
       { range: [1,2], notes: "Tone.js is a framework on top of the Web Audio API" },
       { range: [4,4], notes: "`playNote` returns a function." },
-      { range: [5,5], notes: "`playMiddleC` is the return value of `playNote('C4')`" },
-      { range: [5,5], notes: "No note has been played yet!" },
-      { range: [7,8], notes: "`playMiddleC` is called when the button is clicked" },
+      { range: [5,5], notes: "`playMiddleC` is the returned function" },
       { range: [8,8], notes: "`addEventListener` accepts a function as an argument" },
       { lines: [4,8], notes: "`addEventListener` and `playNote` are both higher order" },
   ]}
