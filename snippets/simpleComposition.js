@@ -10,3 +10,9 @@ const compose = (a,b) => (...args) => a(b(...args));
 
 const getDetunedFrequency =
   compose(detuneUp, freq);
+
+/* Stage 1 TC39 Native Pipeline operator Syntax */
+
+const getDetunedFrequency = note => note
+  |> freq
+  |> detuneUp;
