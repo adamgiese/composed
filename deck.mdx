@@ -18,6 +18,10 @@ import PartialApplication from './components/music/examples/partialApp.js'
 import Detuned from './components/music/examples/detune.js'
 import Wow from './components/music/examples/wowTest.js'
 import Chapter from './components/Chapter.js'
+const Intro = () => <Chapter>Intro to FP</Chapter>
+const Tools = () => <Chapter>Tools of FP</Chapter>
+const Together = () => <Chapter>Putting it Together</Chapter>
+const Wrapping = () => <Chapter>Wrapping Up</Chapter>
 
 <Head>
   <title>Composing music with composed functions</title>
@@ -60,6 +64,7 @@ Give a brief introduction
 ```
 
 ---
+<Intro />
 
 ## What is functional programming?
 
@@ -79,6 +84,7 @@ Give a brief introduction
 ```
 
 ---
+<Intro/>
 
 ## What is a function?
 <Drake
@@ -99,6 +105,7 @@ These so-called "pure" functions are the building block.
 ```
 
 ---
+<Intro/>
 
 ### What makes a function pure?
 <Appear>
@@ -121,14 +128,19 @@ These so-called "pure" functions are the building block.
 "referentially transparent" means the expression can be replaced by its value
 ```
 ---
+<Intro/>
 <Gru step={1} />
 ---
+<Intro/>
 <Gru step={2} />
 ---
+<Intro/>
 <Gru step={3} />
 ---
+<Intro/>
 <Gru step={4} />
 ---
+<Intro/>
 
 ## Side effects are *NOT* bad. They include:
 - Making an HTTP request
@@ -142,6 +154,7 @@ These so-called "pure" functions are the building block.
 - Use your "impure" functions carefully and predicably
 ```
 ---
+<Intro/>
 
 <CodeSurfer
   code={require("!raw-loader!./snippets/pure-vs-impure.js")}
@@ -162,6 +175,8 @@ For an example...
 ```
 
 ---
+<Tools />
+
 # Immutability
 <Small>definition: a variable whose state cannot be modified after creation</Small>
 
@@ -171,6 +186,7 @@ Now that we have a definition of "functional programming" and "functions", lets 
 One of these is Immutability.
 ```
 ---
+<Tools />
 <Image src={butWhy} size='60vw' />
 
 ```notes
@@ -180,6 +196,7 @@ It might seem like immutability is tieing one arm behind your back
 
 ```
 ---
+<Tools />
 
 ## Advantages of Immutability
 
@@ -202,6 +219,7 @@ It might seem like immutability is tieing one arm behind your back
 
 ```
 ---
+<Tools />
 
 # Higher order functions
 
@@ -214,6 +232,7 @@ Another technique of functional programming is "higher order functions"
 ```
 
 ---
+<Tools />
 <Dawg
   line1='Yo dawg I heard you like functions so I made a function'
   line2='that takes a function and returns a function'
@@ -223,6 +242,7 @@ Another technique of functional programming is "higher order functions"
 Here is an example that might help
 ```
 ---
+<Tools />
 <CodeSurfer
   code={require("!raw-loader!./snippets/returnFunction.js")}
   lang="javascript"
@@ -239,10 +259,13 @@ Here is an example that might help
 />
 
 ---
+<Tools />
 
 <MiddleC />
 
 ---
+<Tools />
+
 # Dealing with arrays
 
 ```notes
@@ -255,11 +278,15 @@ Here is an example that might help
   -- Immutability: each of the MENTIONED methods return a new array
 ```
 ---
+<Tools />
+
 ## `Array.filter`
 - Accepts a function run again every element
 - <code>fn(element, index, array)</code>
 - Returns a subset of the original array
 ---
+<Tools />
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/filter.js")}
   lang="javascript"
@@ -276,15 +303,20 @@ Here is an example that might help
   ]}
 />
 ---
+<Tools />
 
 <Filters />
 
 ---
+<Tools />
+
 ## `Array.map`
 - Accepts a function run again every element
 - <code>fn(element, index, array)</code>
 - Returns array of same length with new values
 ---
+<Tools />
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/map.js")}
   lang="javascript"
@@ -298,10 +330,13 @@ Here is an example that might help
   ]}
 />
 ---
+<Tools />
 
 <Map />
 
 ---
+<Tools />
+
 ## `Array.reduce`
 - Accepts a function run against every element
 - <code>fn(accumulator, element, index, array)</code>
@@ -315,6 +350,8 @@ Here is an example that might help
 - It is a very generic utility function that can return any type
 ```
 ---
+<Tools />
+
 <CodeSurfer
   code={require("!raw-loader!./snippets/reduce.js")}
   lang="javascript"
@@ -337,10 +374,12 @@ Here is an example that might help
   ]}
 />
 ---
+<Tools />
 
 <Reduce />
 
 ---
+<Tools />
 
 ### Partial Application
 <Small>definition: a technique to "pre-set" or "fix"<br /> some arguments of a function</Small>
@@ -352,6 +391,7 @@ Here is an example that might help
 - In the proposed partial application, you can use the '?' token as a placeholder
 ```
 ---
+<Tools />
 <CodeSurfer
   code={require("!raw-loader!./snippets/closure.js")}
   lang="javascript"
@@ -367,10 +407,12 @@ Here is an example that might help
   ]}
 />
 ---
+<Tools />
 
 <PartialApplication />
 
 ---
+<Tools />
 
 ## Composition
 <Small>definition: a technique to combine multiple functions into a new function</Small>
@@ -379,14 +421,17 @@ Here is an example that might help
 - I like the metaphor of "pipes"
 ```
 ---
+<Tools />
 
 <img src={composition1} />
 
 ---
+<Tools />
 
 <img src={composition2} />
 
 ---
+<Tools />
 
 <CodeSurfer
   code={require("!raw-loader!./snippets/simpleComposition.js")}
@@ -407,16 +452,19 @@ Here is an example that might help
 />
 
 ---
+<Tools />
 
 <Detuned />
 
 ---
+<Together />
 
 # Putting it all together
 
 Writing a function that converts a human readable shorthand into a computer readable array.
 
 ---
+<Together />
 
 <CodeSurfer
   code={require("!raw-loader!./components/music/util/parseShorthand.js")}
@@ -456,6 +504,7 @@ Writing a function that converts a human readable shorthand into a computer read
 />
 
 ---
+<Together />
 
 ```js
 `C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n`
@@ -463,6 +512,7 @@ Writing a function that converts a human readable shorthand into a computer read
 This input string becomes...
 
 ---
+<Together />
 
 ```js
 [ 
@@ -473,6 +523,7 @@ This input string becomes...
 ...this array of strings, which becomes...
 
 ---
+<Together />
 
 ```js
 [
@@ -489,6 +540,7 @@ This input string becomes...
 ...this array of note objects!
 
 ---
+<Together />
 
 ```js
  `C4@16n E4@16n G4@16n C5@16n E5@16n G4@16n C5@16n E5@16n 
@@ -502,9 +554,11 @@ This input string becomes...
 ```
 
 ---
+<Together />
 
 <Wow id='preludeInC' title='🎹'/>
 ---
+<Together />
 
 ```js
  `E5@16n E5@8n E5@8n C5@16n E5@8n G5@4n G4@4n
@@ -517,10 +571,12 @@ This input string becomes...
 ```
 
 ---
+<Together />
 
 <Wow id='mario' title='⭐️'/>
 
 ---
+<Wrapping />
 
 # Why?
 
@@ -535,6 +591,7 @@ This input string becomes...
 ```
 
 ---
+<Wrapping />
 
 <h1 className='thanks'>Thank You!</h1>
 
