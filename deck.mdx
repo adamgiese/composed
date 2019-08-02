@@ -17,10 +17,25 @@ import Map from './components/music/examples/mapExample.js'
 import PartialApplication from './components/music/examples/partialApp.js'
 import Detuned from './components/music/examples/detune.js'
 import Wow from './components/music/examples/wowTest.js'
+import Chapter from './components/Chapter.js'
 
 <Head>
   <title>Composing music with composed functions</title>
   <style>@import url('https://fonts.googleapis.com/css?family=Anton')</style>
+  <style>{`
+    .chapter {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: white;
+      color: black;
+      font-size: 2rem;
+      padding: 1rem;
+    }
+  `}</style>
+  <style>
+    {'div[class^="Slide__Root"] { position: relative; } '}
+  </style>
 </Head>
 
 <SoundCheck />
