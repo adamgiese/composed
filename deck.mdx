@@ -129,6 +129,27 @@ These so-called "pure" functions are the building block.
 ```
 ---
 <Intro/>
+
+<CodeSurfer
+  code={require("!raw-loader!./snippets/pure-vs-impure.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+  steps={[
+      { range: [1,4], notes: "Define a musical note with name and octave" },
+      { lines: [6,6], notes: "`incrementOctave` is a pure function" },
+      { lines: [7,7], notes: "`highC` is the result of that pure function" },
+      { range: [9,11], notes: "`play` is an impure function, because it has a side effect" },
+      { range: [10,11], notes: "You can pass in either `highC` or `incrementOctave(middleC)` and have the same effect" },
+  ]}
+/>
+
+```notes
+For an example...
+```
+
+---
+<Intro/>
 <Gru step={1} />
 ---
 <Intro/>
@@ -153,27 +174,6 @@ These so-called "pure" functions are the building block.
 
 - Use your "impure" functions carefully and predicably
 ```
----
-<Intro/>
-
-<CodeSurfer
-  code={require("!raw-loader!./snippets/pure-vs-impure.js")}
-  lang="javascript"
-  showNumbers={false}
-  dark={true}
-  steps={[
-      { range: [1,4], notes: "Define a musical note with name and octave" },
-      { lines: [6,6], notes: "`incrementOctave` is a pure function" },
-      { lines: [7,7], notes: "`highC` is the result of that pure function" },
-      { range: [9,11], notes: "`play` is an impure function, because it has a side effect" },
-      { range: [10,11], notes: "You can pass in either `highC` or `incrementOctave(middleC)` and have the same effect" },
-  ]}
-/>
-
-```notes
-For an example...
-```
-
 ---
 <Tools />
 
