@@ -14,7 +14,7 @@ const length = melody.map(withTime).reduce(toLength, 0)
 export default () => {
   const [ timer, setTimer ] = useState(0)
   const [ isPlaying, setIsPlaying ] = useState(false)
-  const timerResolution = 50
+  const timerResolution = 22
 
   const handleIncrement = () => {
     setTimer(timer + timerResolution);
