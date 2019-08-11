@@ -401,17 +401,21 @@ Here is an example that might help
   dark={true}
   steps={[
       {},
-      { range: [1,1], notes: "transpose takes a direction, interval and note and returns a new note" },
-      { range: [3,3], notes: "'up3M' is a partially applied 'transpose'" },
-      { range: [5,5], notes: "C4 -> E4" },
-      { range: [6,6], notes: "Bb2 -> D3" },
-      { range: [8,10], notes: "Native partial application is currently in Stage 1" },
+      { range: [1,2], notes: "transpose takes a direction, interval and note and returns a new note" },
+      { range: [4,4], notes: "'upMajorThird' is a partially applied 'transpose'" },
+      { range: [6,6], notes: "C4 -> E4" },
+      { range: [7,7], notes: "Bb2 -> D3" },
+      { range: [9,11], notes: "Native partial application is currently in Stage 1" },
   ]}
 />
 ---
 <Tools />
 
 <PartialApplication />
+
+```notes
+We can `map` these partially applied functions to an array of notes...
+```
 
 ---
 <Tools />
