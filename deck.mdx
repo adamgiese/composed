@@ -255,7 +255,9 @@ Here is an example that might help
   steps={[
       {},
       { range: [1,2], notes: "Tone.js is a framework on top of the Web Audio API" },
-      { range: [4,4], notes: "`playNote` returns a function." },
+      { range: [4,4], notes: "`playNote` is a higher order function." },
+      { tokens: {4: [6]}, notes: "It accepts a `note`..." },
+      { tokens: {4: [9,10,11,12,13,14,15,16,17,18,19,20,21]}, notes: "...and returns a function" },
       { range: [5,5], notes: "`playMiddleC` is the returned function" },
       { range: [8,8], notes: "`addEventListener` accepts a function as an argument" },
       { lines: [4,8], notes: "`addEventListener` and `playNote` are both higher order" },
