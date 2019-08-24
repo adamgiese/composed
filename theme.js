@@ -1,5 +1,6 @@
 import { future as theme } from 'mdx-deck/themes'
 import darcula from 'react-syntax-highlighter/styles/prism/duotone-dark'
+import Provider from './provider'
 
 const codeStyles = {
   ...darcula,
@@ -50,5 +51,6 @@ export default {
   },
   prism: {
     style: codeStyles,
-  }
+  },
+  Provider,
 }
