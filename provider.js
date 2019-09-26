@@ -14,7 +14,7 @@ export default props => {
       if (p) {
         /* i know this shit is ugly but i'm done trying to find a cleaner way */
         const slideNumber = document.querySelector('#root > div').getAttribute('activeslide')
-        const activeSlide = document.querySelector(`#root > div > div > div > div > div > div:nth-child(${Number(slideNumber) + 1})`)
+        const activeSlide = document.querySelector(`div[class*='CarouselInner'] > div:nth-child(${Number(slideNumber) + 1})`)
         const buttons = Array.from(activeSlide.querySelectorAll('button'));
         const indexOfFocus = buttons.findIndex(x => document.activeElement === x);
         const isEnd = buttons.length - 1 === indexOfFocus;
@@ -36,7 +36,7 @@ export default props => {
     x: p => {
         /* i know this shit is ugly but i'm done trying to find a cleaner way */
         const slideNumber = document.querySelector('#root > div').getAttribute('activeslide')
-        const activeSlide = document.querySelector(`#root > div > div > div > div > div > div:nth-child(${Number(slideNumber) + 1})`)
+        const activeSlide = document.querySelector(`div[class*='CarouselInner'] > div:nth-child(${Number(slideNumber) + 1})`)
         const buttons = Array.from(activeSlide.querySelectorAll('button'));
         const indexOfFocus = buttons.findIndex(x => document.activeElement === x);
         const isStart = indexOfFocus === 0
@@ -52,7 +52,7 @@ export default props => {
       if (p) {
         /* i know this shit is ugly but i'm done trying to find a cleaner way */
         const slideNumber = document.querySelector('#root > div').getAttribute('activeslide')
-        const activeSlide = document.querySelector(`#root > div > div > div > div > div > div:nth-child(${Number(slideNumber) + 1})`)
+        const activeSlide = document.querySelector(`div[class*='CarouselInner'] > div:nth-child(${Number(slideNumber) + 1})`)
         const buttons = Array.from(activeSlide.querySelectorAll('button'));
         const hasActiveButtonOnSlide = buttons.some(x => x === document.activeElement)
 
