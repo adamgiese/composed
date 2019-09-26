@@ -71,8 +71,6 @@ export default props => {
   });
   useAnimationFrame(() => unswitch.update());
 
-  console.log(props)
-
   return (
     <div activeSlide={props.index}>
       {props.children}
